@@ -1,0 +1,57 @@
+-- To be processed into a parser and lexer using BNFC
+
+entrypoints Exp, Type;
+comment     "#" ;
+coercions Exp 15 ;
+coercions Type 3 ;
+
+-- TODO: incorporate this custom double in the [-1, 1] interval ?
+-- token UnitDouble  (('0' | '1') '.' digit+ ('e' '-'? digit+)?) ;
+
+Var.        Exp15   ::= Ident ;
+BTrue.      Exp15   ::= "true" ;
+BFalse.     Exp15   ::= "false" ;
+DVal.       Exp15   ::= Double ;
+Rand.       Exp15   ::= "rand()" ;
+
+App.        Exp14   ::= Exp14 Exp15 ;
+
+InL.        Exp13   ::= "left" Exp14 ;
+InR.        Exp13   ::= "right" Exp14 ;
+Fst.        Exp13   ::= "fst" Exp14 ;
+Snd.        Exp13   ::= "snd" Exp14 ;
+
+Min.        Exp12   ::= "-" Exp11 ;
+Sqrt.       Exp12   ::= "sqrt" "(" Exp13 ")" ;
+Sin.        Exp12   ::= "sin" "(" Exp13 ")" ;
+Cos.        Exp12   ::= "cos" "(" Exp13 ")" ;
+EPow.       Exp12   ::= "exp" "(" Exp13 ")" ;
+Mul.        Exp10   ::= Exp10 "*" Exp11 ;
+Div.        Exp10   ::= Exp10 "/" Exp11 ;
+Mod.        Exp10   ::= Exp10 "%" Exp11 ;
+Add.        Exp9    ::= Exp9 "+" Exp10 ;
+Sub.        Exp9    ::= Exp9 "-" Exp10 ;
+
+Eq.         Exp8    ::= Exp8 "==" Exp9 ;
+Lt.         Exp8    ::= Exp8 "<" Exp9 ;
+Gt.         Exp8    ::= Exp8 ">" Exp9 ;
+Neq.        Exp8    ::= Exp8 "!=" Exp9 ;
+Leq.        Exp8    ::= Exp8 "<=" Exp9 ;
+Geq.        Exp8    ::= Exp8 ">=" Exp9 ;
+Not.        Exp7    ::= "!" Exp8 ;
+And.        Exp6    ::= Exp6 "and" Exp7 ;
+Or.         Exp6    ::= Exp6 "or" Exp7 ;
+
+Ite.        Exp5    ::= "if" Exp5 "then" Exp6 "else" Exp6 ;
+Match.      Exp4    ::= "match" Exp4 "{" "L" Ident "->" Exp5 ";" "R" Ident "->" Exp5 "}" ;
+-- This one can be Exp3 twice due to brackets being part of the type
+Tup.        Exp3    ::= "(" Exp3 "," Exp3")" ;
+Abstr.      Exp     ::= "lam" Ident "->" Exp1 ;
+
+-- Separate grammar for types
+TDouble.    Type3   ::= "Double" ;
+TBool.      Type3   ::= "Bool" ;
+-- This one can be Type2 twice due to brackets being part of the type
+TProd.      Type2   ::= "(" Type2 "," Type2 ")";
+TFun.       Type1   ::= Type1 "->" Type2 ;
+TCoprod.    Type    ::= Type "+" Type1;

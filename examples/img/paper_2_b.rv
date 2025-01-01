@@ -1,0 +1,9 @@
+# The expression for Figure 2(b) in the original paper:
+# http://users.ece.cmu.edu/~adrian/projects/validation/validation.pdf
+
+lam x -> 
+    (lam y -> 
+        if (x * y > 0.0) 
+            then ( (x, (y, 1.0)) )
+            else ( (x % y, (x % y, x % y)) )
+    )
