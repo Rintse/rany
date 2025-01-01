@@ -1,6 +1,6 @@
-name:                ranvid
+name:                rany
 version:             0.1.0.0
-github:              "Rintse/ranvid"
+github:              "Rintse/rany"
 license:             BSD-3-Clause
 author:              "Rintse"
 copyright:           "2024 Rintse"
@@ -17,7 +17,7 @@ extra-source-files:
 # To avoid duplicated efforts in documentation and dealing with the
 # complications of embedding Haddock markup inside cabal files, it is
 # common to point users to the README.md file.
-description: Please see the README on GitHub at <https://github.com/rintse/ranvid#readme>
+description: Please see the README on GitHub at <https://github.com/rintse/rany#readme>
 
 dependencies:
 - base >= 4.7 && < 5
@@ -77,7 +77,7 @@ when:
     cpp-options:  -DDEBUG
 
 executables:
-  ranvid_img:
+  rany_img:
     main:         Main.hs
     source-dirs:  app_image
     ghc-options:
@@ -85,8 +85,8 @@ executables:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - ranvid
-  ranvid_music:
+    - rany
+  rany_music:
     main:         Main.hs
     source-dirs:  app_music
     ghc-options:
@@ -94,8 +94,8 @@ executables:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - ranvid
-  ranvid_test:
+    - rany
+  rany_test:
     main:         Main.hs
     source-dirs:  test
     ghc-options:
@@ -103,4 +103,4 @@ executables:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - ranvid
+    - rany

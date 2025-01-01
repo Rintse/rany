@@ -1,4 +1,4 @@
-# Changelog for `ranvid`
+# Changelog for `rany`
 
 All notable changes to this project will be documented in this file.
 
