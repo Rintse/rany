@@ -7,6 +7,7 @@ import Control.Monad.Random (randomIO, replicateM)
 import Preprocess (simplifyExp, fillRands)
 import Control.Monad.Except (runExcept)
 import Data.Either (lefts)
+import System.Exit (exitFailure)
 
 numTests :: Int
 numTests = 1000
@@ -28,8 +29,12 @@ doTest e = do
             mapM_ (putStrLn . ("  - " ++)) $ lefts [a, b]
             return False
 
-testSimp :: IO Bool
+testSimp :: IO ()
 testSimp = do
     seeds <- replicateM numTests $ replicateM 8 (randomIO :: IO Char)
     toTest <- mapM (\s -> fmap (fillRands s) (genExp TDouble s)) seeds
-    and <$> mapM doTest toTest
+    success <- and <$> mapM doTest toTest
+
+    if success 
+        then putStrLn "Simplification tests succesfull."
+        else putStrLn "Simplification tests failed" >> exitFailure

@@ -4,6 +4,7 @@ import Eval (evalExpM)
 import Value (Value (..))
 import Syntax.Parse (parseExp)
 import Control.Monad.Except (runExcept)
+import System.Exit (exitFailure)
 
 data TestProgram = TestProgram {
     name :: String,
@@ -44,5 +45,9 @@ doTest TestProgram { name=n, content=c, expected=e } = do
             putStrLn $ "Got: " ++ show other
             return False
 
-testEval :: IO Bool
-testEval = and <$> mapM doTest programs
+testEval :: IO ()
+testEval = do 
+    success <- and <$> mapM doTest programs
+    if success 
+        then putStrLn "Eval tests succesfull."
+        else putStrLn "Eval tests failed" >> exitFailure

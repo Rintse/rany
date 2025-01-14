@@ -1,0 +1,195 @@
+cabal-version: 2.2
+
+-- This file has been generated from package.yaml by hpack version 0.36.0.
+--
+-- see: https://github.com/sol/hpack
+
+name:           rany
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/rintse/rany#readme>
+homepage:       https://github.com/Rintse/rany#readme
+bug-reports:    https://github.com/Rintse/rany/issues
+author:         Rintse
+maintainer:     Rintse
+copyright:      2024 Rintse
+license:        BSD-3-Clause
+license-file:   LICENSE
+build-type:     Custom
+extra-source-files:
+    README.md
+    CHANGELOG.md
+
+source-repository head
+  type: git
+  location: https://github.com/Rintse/rany
+
+custom-setup
+  setup-depends:
+      Cabal
+    , base
+    , process
+
+flag debug
+  description: Enable debug printing of generator
+  manual: True
+  default: False
+
+library
+  exposed-modules:
+      Eval
+      Gen.Exp
+      Gen.Types
+      Gen.Util
+      Preprocess
+      Syntax.AbsF
+      Syntax.Grammar.Skel
+      Syntax.Parse
+      Value
+      Syntax.Grammar.Par
+      Syntax.Grammar.Lex
+      Syntax.Grammar.Abs
+      Syntax.Grammar.ErrM
+      Syntax.Grammar.Print
+  other-modules:
+      Paths_rany
+  autogen-modules:
+      Paths_rany
+      Syntax.Grammar.Par
+      Syntax.Grammar.Lex
+      Syntax.Grammar.Abs
+      Syntax.Grammar.ErrM
+      Syntax.Grammar.Print
+  hs-source-dirs:
+      src
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
+  build-depends:
+      MonadRandom
+    , NoTrace
+    , QuickCheck
+    , QuickCheck-GenT
+    , array
+    , base >=4.7 && <5
+    , binary
+    , bytestring
+    , generic-random
+    , haskore
+    , hip
+    , inflist
+    , monadic-recursion-schemes
+    , mtl
+    , parallel
+    , random
+    , recursion-schemes
+    , split
+    , unordered-containers
+  default-language: Haskell2010
+  if flag(debug)
+    cpp-options: -DDEBUG
+
+executable rany_img
+  main-is: Main.hs
+  other-modules:
+      Args
+      Image
+      Paths_rany
+  autogen-modules:
+      Paths_rany
+  hs-source-dirs:
+      app_image
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      MonadRandom
+    , NoTrace
+    , QuickCheck
+    , QuickCheck-GenT
+    , array
+    , base >=4.7 && <5
+    , binary
+    , bytestring
+    , generic-random
+    , haskore
+    , hip
+    , inflist
+    , monadic-recursion-schemes
+    , mtl
+    , parallel
+    , random
+    , rany
+    , recursion-schemes
+    , split
+    , unordered-containers
+  default-language: Haskell2010
+  if flag(debug)
+    cpp-options: -DDEBUG
+
+executable rany_music
+  main-is: Main.hs
+  other-modules:
+      Args
+      Music
+      Paths_rany
+  autogen-modules:
+      Paths_rany
+  hs-source-dirs:
+      app_music
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      MonadRandom
+    , NoTrace
+    , QuickCheck
+    , QuickCheck-GenT
+    , array
+    , base >=4.7 && <5
+    , binary
+    , bytestring
+    , generic-random
+    , haskore
+    , hip
+    , inflist
+    , monadic-recursion-schemes
+    , mtl
+    , parallel
+    , random
+    , rany
+    , recursion-schemes
+    , split
+    , unordered-containers
+  default-language: Haskell2010
+  if flag(debug)
+    cpp-options: -DDEBUG
+
+executable rany_test
+  main-is: Main.hs
+  other-modules:
+      TestEval
+      TestSimp
+      Paths_rany
+  autogen-modules:
+      Paths_rany
+  hs-source-dirs:
+      test
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      MonadRandom
+    , NoTrace
+    , QuickCheck
+    , QuickCheck-GenT
+    , array
+    , base >=4.7 && <5
+    , binary
+    , bytestring
+    , generic-random
+    , haskore
+    , hip
+    , inflist
+    , monadic-recursion-schemes
+    , mtl
+    , parallel
+    , random
+    , rany
+    , recursion-schemes
+    , split
+    , unordered-containers
+  default-language: Haskell2010
+  if flag(debug)
+    cpp-options: -DDEBUG
