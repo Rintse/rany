@@ -74,9 +74,9 @@ genOfType' t@TDouble = do
             ]
     let leafsG =
             [ (050, trace "DVal" $ DVal <$> choose (-1, 1))
-            , (100, trace "Rand" $ return Rand)
+            , (050, trace "Rand" $ return Rand)
             ] ++ 
-            [ (200, trace "pickVar" $ pickVar validVars) | not (null validVars) ]
+            [ (300, trace "pickVar" $ pickVar validVars) | not (null validVars) ]
     let allNodesG = nonLeafsG ++ leafsG
 
     notInFunc <- asks null
